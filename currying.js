@@ -62,3 +62,26 @@ function callFun(fn){
             const sum = callFun((a,b) => a + b)
 
             console.log(sum(1)(2)(3,2,1)())
+
+// Example 4
+// ===============================================================================================================
+const add1 = x => x+1;
+const mul2 = x => x*2;
+const div4 = x => x/4;
+
+const pipe1 = (...args) => {
+    var value = 0;
+    return function f(initialValue) {
+        value = initialValue;
+        for(fn of args) {
+            value = fn(value);
+        }
+        return value;
+    }
+}
+
+
+console.log(pipe1(add1, mul2, div4)(3)) // = 2
+console.log(pipe1(mul2, add1, div4)(3)) // = 1.75
+console.log(pipe(mul2, div4, add1)(3)) // = 2.5
+console.log(pipe(mul2, div4, add1, mul2)(3)) // = 5
