@@ -1,5 +1,6 @@
 // Example 1
 // ==========================================================================================================
+// https://www.geeksforgeeks.org/debouncing-in-javascript/
 
 function sum() {
     var add = function (a, b) { return a + b; },
