@@ -106,3 +106,23 @@ console.log(pipe1(add1, mul2, div4, mul2, mul2, add1)(3)) // = 9
 console.log(pipe1(mul2, add1, div4)(3)) // = 1.75
 console.log(pipe1(mul2, div4, add1)(3)) // = 2.5
 console.log(pipe1(mul2, div4, add1, mul2)(3)) // = 5
+
+// Example 6
+// ======================================================================================================================
+const pipe3 = (...x) => {
+    var sum = function (a,b) { return a+b; };
+    var value = x.reduce( sum, 0);
+    const f = (...y) => {
+      value = y.reduce(sum, value);
+      if(y.length) {return f;}
+      else { return f.toString()}
+    }
+
+    f.toString = function() { return value; }
+
+     return f;
+}
+
+console.log(pipe3(2)(3)(6)(7)()); //18
+console.log(pipe3(2,3)(6)(7,8,9)()); // 35
+console.log(pipe3(9)());
