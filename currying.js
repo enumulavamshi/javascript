@@ -90,20 +90,19 @@ console.log(pipe(mul2, div4, add1, mul2)(3)) // = 5
 
 // Example 5
 // ==================================================================================================================
-
 const add1 = x => x+1;
 const mul2 = x => x*2;
 const div4 = x => x/4;
 
 const pipe1 = (...x) => {
     return(y)=>{
-      console.log(x.reduce((a,b) => b(a), y))
+      return x.reduce((a,b) => b(a), y);
     }
    
 }
 
 
-console.log(pipe1(add1, mul2, div4)(3)) // = 2
+console.log(pipe1(add1, mul2, div4, mul2, mul2, add1)(3)) // = 9
 console.log(pipe1(mul2, add1, div4)(3)) // = 1.75
 console.log(pipe1(mul2, div4, add1)(3)) // = 2.5
 console.log(pipe1(mul2, div4, add1, mul2)(3)) // = 5
